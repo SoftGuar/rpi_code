@@ -1,0 +1,11 @@
+[Unit]
+Description=Restart Bluetooth Auto-Pair Service
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'sleep 15 && systemctl restart bluetooth_auto_connect'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

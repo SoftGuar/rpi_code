@@ -1,0 +1,16 @@
+[Unit]
+Description=ESP32 Beacon Listener Service
+After=rfcomm_watch.service pigpiod.service bluetooth.service bluetooth_data_sender.service
+Requires=rfcomm_watch.service pigpiod.service bluetooth.service
+Wants=rfcomm_watch.service pigpiod.service bluetooth.service bluetooth_data_sender.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/esp32/esp32_beacon_listener.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
