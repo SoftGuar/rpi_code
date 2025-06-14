@@ -1,0 +1,15 @@
+[Unit]
+Description=Bluetooth Beacons Scanner Service
+After=rfcomm_watch.service pigpiod.service bluetooth.service bluetooth_data_sender.service
+Requires=rfcomm_watch.service pigpiod.service bluetooth.service
+Wants=rfcomm_watch.service pigpiod.service bluetooth.service bluetooth_data_sender.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3 /usr/local/bin/bluetooth_beacons_scanner_v2.py
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
